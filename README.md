@@ -32,3 +32,14 @@ environment variables in your CI:
 **Important: do not check "_Display value in build log_" for security reason!**
 
 Deployment will be done automatically by the CI.
+
+Deploy on SymfonyCloud
+======================
+
+Everything is pre-configured. Create a project, deploy, load fixtures:
+
+ #. `symfony project:create`
+ #. `symfony deploy`
+ #. `symfony ssh --app api bin/console doctrine:schema:update --force`
+ #. `symfony ssh --app api bin/console hautelook:fixtures:load`
+ #. `symfony open:remote -app client`

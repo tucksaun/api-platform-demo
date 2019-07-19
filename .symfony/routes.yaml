@@ -1,0 +1,5 @@
+"https://{default}/": { type: upstream, upstream: "client:http" }
+
+"https://api.{default}/": { type: upstream, upstream: "api:http" }
+
+"https://admin.{default}/": { type: upstream, upstream: "admin:http" }

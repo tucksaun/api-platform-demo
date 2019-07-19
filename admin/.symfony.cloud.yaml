@@ -1,0 +1,35 @@
+name: admin
+
+type: nodejs:10
+
+dependencies:
+    nodejs:
+        yarn: "*"
+
+build:
+    flavor: none
+
+web:
+    commands:
+        start: sleep
+    locations:
+        "/":
+            root: "build"
+            index:
+                - "index.html"
+            scripts: false
+            expires: 1h
+
+hooks:
+    build: |
+        set -x -e
+
+        npm install --global yarn
+
+        yarn install
+
+        REACT_APP_API_ENTRYPOINT=https://api.test-api-platform-xdhk25q-c6yyhsnvmdojk.eu.s5y.io/ \
+        CI=false \
+        yarn build --environment=prod
+
+disk: 128
