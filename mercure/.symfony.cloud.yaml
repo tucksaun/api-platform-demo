@@ -1,0 +1,36 @@
+name: mercure
+
+# This actually has no importance
+type: golang:1.10
+
+build:
+    flavor: 'none'
+
+variables:
+    env:
+        DB_PATH: data/updates.db
+        # This one should be defined using `var:set` instead of hardcoded
+        JWT_KEY: 'myJWTKey'
+
+web:
+    upstream:
+        socket_family: tcp
+        protocol: http
+    commands:
+        start: ADDR=":${PORT}" ./mercure
+    locations:
+        /:
+            allow: false
+            passthru: true
+
+disk: 2048
+
+mounts:
+    '/data': 'shared:files/data'
+
+hooks:
+    build: |
+        set -e -x
+
+        curl -s https://get.symfony.com/cloud/configurator | (>&2 bash)
+        curl -s -H 'Accept: application/octet-stream' -J -L "https://github.com/dunglas/mercure/releases/download/v0.6.0/mercure_0.6.0_Linux_x86_64.tar.gz" | tar -C /app/ -zxpf -

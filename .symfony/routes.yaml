@@ -3,3 +3,5 @@
 "https://api.{default}/": { type: upstream, upstream: "api:http" }
 
 "https://admin.{default}/": { type: upstream, upstream: "admin:http" }
+
+"https://hub.{default}/": { type: upstream, upstream: "mercure:http" }

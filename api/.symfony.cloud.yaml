@@ -28,6 +28,7 @@ relationships:
 
 variables:
     env:
+        MERCURE_SUBSCRIBE_URL: 'https://hub.test-api-platform-xdhk25q-c6yyhsnvmdojk.eu.s5y.io'
         CORS_ALLOW_ORIGIN: '^https://(admin\.)?test-api-platform-xdhk25q-c6yyhsnvmdojk\.eu\.s5y\.io$'
 
 hooks:
